@@ -1,0 +1,161 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Crews</h4>
+                        <p class="card-category">Here, you can manipulate all data regarding the crew.</p>
+                    </div>
+                    <div class="card-body">
+                        
+
+
+
+
+
+
+
+    <!--Including the pagination control.-->
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div style="float:left">
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"  (click)="delete()"><i class="material-icons">delete</i></button>
+                                <button mat-raised-button type="submit" class="btn btn-warning pull-right" (click)="modify()"><i class="material-icons">edit</i></button>
+                                <button mat-raised-button type="submit" class="btn btn-info" (click)="add()"><i class="material-icons">create_new_folder</i></button>
+                            </div>
+                            </div>
+                        <div class="col-md-4" >
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Search" [(ngModel)]="searchQuery" (input)="filterItems()">
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="alert alert-info  col-md-10 ml-auto mr-auto" *ngIf="deleteMessage=='The crew has been deleted successfully!'">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close"(click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                <b> Success - </b> {{deleteMessage}}</span>
+                        </div>
+
+                        <div class="alert alert-danger col-md-10 ml-auto mr-auto" *ngIf="deleteMessage=='Operation cancelled!' ||deleteMessage=='An error has occurred while deleted the crew!' ">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span class="text-center">
+                                <b> Cancel - </b> {{deleteMessage}}</span>
+                        </div>
+
+                        
+
+
+
+
+
+
+                        <div class="alert alert-danger col-md-10 ml-auto mr-auto" *ngIf="addMessage=='Operation cancelled!' ||addMessage=='An error has occurred while saving the new crew!' ">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span class="text-center">
+                                <b> Cancel - </b> {{addMessage}}</span>
+                        </div>
+
+
+                        <div class="alert alert-success  col-md-10 ml-auto mr-auto" *ngIf="addMessage=='The new crew has been created successfully!'">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close"(click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                <b> Success - </b> {{addMessage}}</span>
+                        </div>
+
+
+                        <div class="alert alert-danger col-md-10 ml-auto mr-auto" *ngIf="modifyMessage=='Operation cancelled!' ||modifyMessage=='An error has occurred while saving the modification!' ">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span class="text-center">
+                                <b> Cancel - </b> {{modifyMessage}}</span>
+                        </div>
+
+
+                        <div class="alert alert-info  col-md-10 ml-auto mr-auto" *ngIf="modifyMessage=='The crew has been modified successfully!'">
+                            <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close"(click)="clearAlert()">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                <b> Success - </b> {{modifyMessage}}</span>
+                        </div>
+
+
+
+                    </div>
+                    
+
+                    <br/>
+
+                        <div class="table-responsive" >
+                            <table class="table table-hover">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        EMPLOYEE ID
+                                    </th>
+                                    <th>
+                                        Role 
+                                    </th>
+                                    <th>
+                                        Years Of Experience 
+                                    </th>
+                                    
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dish of filteredItems | paginate: { itemsPerPage: count, currentPage: p }">
+                                        <td>
+                                            {{dish.id}}
+                                        </td>
+                                        <td>
+                                            {{dish.name}}
+                                        </td>
+                                        <td>
+                                            {{dish.employeeID}}
+                                        </td>
+                                        <td>
+                                            {{dish.role}}
+                                        </td>
+                                        <td>
+                                            {{dish.yearsOfExperience}}
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                        <div class="text-right">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                          </div>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
